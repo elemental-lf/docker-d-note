@@ -9,6 +9,10 @@ RUN apk add --no-cache python2 py2-flask py2-crypto py-setuptools uwsgi uwsgi-py
  && rm -rf build \
  && apk del git
 
+ENV GO_CRON_VERSION v0.0.7
+ADD https://github.com/odise/go-cron/releases/download/$GO_CRON_VERSION/go-cron-linux.gz /
+RUN gunzip go-cron-linux.gz && chmod a+x /go-cron-linux
+
 COPY config/d-note.ini /etc/dnote/
 COPY script/uwsgi-http-dnote.sh /usr/local/bin/
 

@@ -1,5 +1,7 @@
 #! /bin/sh
 
+/go-cron-linux -s "@daily" -- /bin/sh -c 'find /dnote/db/* \( -iname "*" ! -iname "hashcash.db" \) -mtime +30 -exec rm {} \;' &
+
 /usr/bin/generate_dnote_hashes
 
 chown -R uwsgi:uwsgi /dnote
